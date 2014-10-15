@@ -1,4 +1,4 @@
-*.pdf
+build
 *.log
 *.dvi
 *.aux
