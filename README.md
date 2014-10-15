@@ -3,7 +3,11 @@ dfa-analyzer
 
 CS 311 project 1
 
-How it works:
+###Writeup at writeup.pdf and writeup.tex
+
+###script at dfa-analyzer.py
+
+###How it works:
 
 ```
 $ ./dfa-analyzer.py dfa-not-in-language.csv 
