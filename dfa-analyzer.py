@@ -1,6 +1,11 @@
 #! /usr/bin/env python
 # ben reichert, cs311 dfa-analyzer
 #be nice and follow the rules and you'll have a nice dfa, otherwise...well...a bad piece of software
+#looked at these links for notes:
+#http://pythonfiddle.com/dfa-simple-implementation/
+#http://www.lamantia.org/archives/457
+#https://github.com/reverie/python-automata/blob/master/DFA.py
+
 import csv
 import sys
 
