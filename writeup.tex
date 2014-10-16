@@ -67,7 +67,8 @@ Q4
 
 The DFA is loaded from the csv file into a dictionary with the key of the dictionary being the pair of values:state and the character to transition on. The value stored in that dictionary entry being the state to transition to. This way I can easily lookup the correct path to take within the DFA class to traverse between states. The DFA class is handed a string to test against the DFA and from that, it just traverses until there is no more characters in the string, and then checks if it landed on an accepting state, and returns True/False depending.
 
-A major assumption I made is that I assume the user follows the csv format precisely, since I do absolutlely no error checking. If the user enters something corrupt in the csv file, too bad, and the program will probably blow up.I also assumed that the csv file that needs to be read exists, and has a .csv extension. I did do some basic error checking that the filename has .csv, but no checking that it exists in the first place. I saw the need for error checking as something that could be implemented in the future, but is not particularly necessesary in this environment for this assignment.
+A major assumption I made is that I assume the user follows the csv format precisely, since I do absolutlely no error checking. If the user enters something corrupt in the csv file, too bad, and the program will probably blow up.I also assumed that the csv file that needs to be read exists, and has a .csv extension. I did do some basic error checking that the filename has .csv, but no checking that it exists in the first place. I saw the need for error checking as something that could be implemented in the future, but is not particularly necessesary in this environment for this assignment. A problem with the csv format the way I implemented it, is that all the transition functions are on the same line, so even a simple 5 state DFA can create a very long, hard to read line. This could be improved if need be, but for basic implementation and functionality, this worked fine for this programming assignment.
+
 
 Below are some sample inputs, and outputs:
 
@@ -95,6 +96,30 @@ S
 $ ./dfa-analyzer.py dfa.csv
 Welcome to the DFA-Analyzer
 String is in the language.
+
+$ cat csv-files/example1.11-page38.csv 
+a,b
+s
+q1,q2,r1,r2
+s->a->q1,s->b->r1,q1->a->q1,r1->b->r1,q1->b->q2,q2->a->q1,q2->b->q2,r1->a->r2,r2->a->r2,r2->b->r1
+q1,r1
+bab
+
+$ ./dfa-analyzer.py csv-files/example1.11-page38.csv 
+Welcome to the DFA-Analyzer
+String is in the language.
+
+$ cat csv-files/example1.11-page38-invalid.csv 
+a,b
+s
+q1,q2,r1,r2
+s->a->q1,s->b->r1,q1->a->q1,r1->b->r1,q1->b->q2,q2->a->q1,q2->b->q2,r1->a->r2,r2->a->r2,r2->b->r1
+q1,r1
+bbba
+
+$ ./dfa-analyzer.py csv-files/example1.11-page38-invalid.csv 
+Welcome to the DFA-Analyzer
+String is not in the language.
 \end{lstlisting}
 
 \end{document}
