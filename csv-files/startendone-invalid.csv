@@ -4,3 +4,4 @@ Q
 S->1->S,S->0->Q,Q->0->Q,Q->1->S
 S
 1000010101010010100101001000101000000
+#represents a language that starts and ends with 1s

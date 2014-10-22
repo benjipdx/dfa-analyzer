@@ -1,0 +1,2 @@
+#! /bin/sh
+for i in `ls csv-files`; do echo "shell=> cat csv-file $i"; cat csv-files/$i; echo ""; echo "shell=>./dfa-analyzer.py csv-files/$i"; ./dfa-analyzer.py csv-files/$i; echo ""; done
