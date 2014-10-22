@@ -1,0 +1,7 @@
+a,b
+Q0
+Q1,Q2,Q3
+Q0->a->Q1,Q1->a->Q1,Q1->b->Q2,Q2->b->Q2,Q2->a->Q1,Q0->b->Q3,Q3->a->Q3,Q3->b->Q3
+Q0,Q1
+abbbbbbbbbbbbbbbbab
+#language is words ending and beginning with a, or a(x ammount of a/b)a

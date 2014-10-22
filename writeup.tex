@@ -73,53 +73,110 @@ A major assumption I made is that I assume the user follows the csv format preci
 Below are some sample inputs, and outputs:
 
 \begin{lstlisting}
-$ cat dfa-not-in-language.csv 
-1,0
-S
-Q
-S->1->S,S->0->Q,Q->0->Q,Q->1->S
-S
-1000010101010010100101001000101000000
+shell=> cat csv-file axa-invalid.csv
+a,b
+Q0
+Q1,Q2,Q3
+Q0->a->Q1,Q1->a->Q1,Q1->b->Q2,Q2->b->Q2,Q2->a->Q1,Q0->b->Q3,Q3->a->Q3,Q3->b->Q3
+Q0,Q1
+abbbbbbbbbbbbbbbbab
+#language is words ending and beginning with a, or a(x ammount of a/b)a
 
-$ ./dfa-analyzer.py dfa-not-in-language.csv 
+shell=>./dfa-analyzer.py csv-files/axa-invalid.csv
 Welcome to the DFA-Analyzer
 String is not in the language.
 
-$ cat dfa.csv
-1,0
-S
-Q
-S->1->S,S->0->Q,Q->0->Q,Q->1->S
-S
-100001
-
-$ ./dfa-analyzer.py dfa.csv
-Welcome to the DFA-Analyzer
-String is in the language.
-
-$ cat csv-files/example1.11-page38.csv 
+shell=> cat csv-file axa.csv
 a,b
-s
-q1,q2,r1,r2
-s->a->q1,s->b->r1,q1->a->q1,r1->b->r1,q1->b->q2,q2->a->q1,q2->b->q2,r1->a->r2,r2->a->r2,r2->b->r1
-q1,r1
-bab
+Q0
+Q1,Q2,Q3
+Q0->a->Q1,Q1->a->Q1,Q1->b->Q2,Q2->b->Q2,Q2->a->Q1,Q0->b->Q3,Q3->a->Q3,Q3->b->Q3
+Q0,Q1
+abbbbbbbbbbbbbbbba
+#language is words ending and beginning with a, or a(x ammount of a/b)a
 
-$ ./dfa-analyzer.py csv-files/example1.11-page38.csv 
+shell=>./dfa-analyzer.py csv-files/axa.csv
 Welcome to the DFA-Analyzer
 String is in the language.
 
-$ cat csv-files/example1.11-page38-invalid.csv 
+shell=> cat csv-file example1.11-page38-invalid.csv
 a,b
 s
 q1,q2,r1,r2
 s->a->q1,s->b->r1,q1->a->q1,r1->b->r1,q1->b->q2,q2->a->q1,q2->b->q2,r1->a->r2,r2->a->r2,r2->b->r1
 q1,r1
 bbba
+#describes a language that accepts all strings that start and end with a or that start and end with b
 
-$ ./dfa-analyzer.py csv-files/example1.11-page38-invalid.csv 
+shell=>./dfa-analyzer.py csv-files/example1.11-page38-invalid.csv
 Welcome to the DFA-Analyzer
 String is not in the language.
+
+shell=> cat csv-file example1.11-page38.csv
+a,b
+s
+q1,q2,r1,r2
+s->a->q1,s->b->r1,q1->a->q1,r1->b->r1,q1->b->q2,q2->a->q1,q2->b->q2,r1->a->r2,r2->a->r2,r2->b->r1
+q1,r1
+bab
+#describes a language that accepts all strings that start and end with a or that start and end with b
+
+shell=>./dfa-analyzer.py csv-files/example1.11-page38.csv
+Welcome to the DFA-Analyzer
+String is in the language.
+
+shell=> cat csv-file oneoneone-invalid.csv
+0,1
+Q1
+Q2,Q3,Q4
+Q1->0->Q1,Q1->1->Q2,Q2->1->Q3,Q3->1->Q4,Q2->0->Q1,Q3->0->Q1,Q4->0->Q1,Q4->1->Q4
+Q4
+000000000000000000011001100000000000000011
+#language that contains ends with at least three ones
+
+shell=>./dfa-analyzer.py csv-files/oneoneone-invalid.csv
+Welcome to the DFA-Analyzer
+String is not in the language.
+
+shell=> cat csv-file oneoneone.csv
+0,1
+Q1
+Q2,Q3,Q4
+Q1->0->Q1,Q1->1->Q2,Q2->1->Q3,Q3->1->Q4,Q2->0->Q1,Q3->0->Q1,Q4->0->Q1,Q4->1->Q4
+Q4
+0000000000000000000111
+#language that ends with at least three ones
+
+shell=>./dfa-analyzer.py csv-files/oneoneone.csv
+Welcome to the DFA-Analyzer
+String is in the language.
+
+shell=> cat csv-file startendone-invalid.csv
+1,0
+S
+Q
+S->1->S,S->0->Q,Q->0->Q,Q->1->S
+S
+1000010101010010100101001000101000000
+#represents a language that starts and ends with 1s
+
+shell=>./dfa-analyzer.py csv-files/startendone-invalid.csv
+Welcome to the DFA-Analyzer
+String is not in the language.
+
+shell=> cat csv-file startendone.csv
+1,0
+S
+Q
+S->1->S,S->0->Q,Q->0->Q,Q->1->S
+S
+100001
+#represents a language that starts and ends with 1s
+
+shell=>./dfa-analyzer.py csv-files/startendone.csv
+Welcome to the DFA-Analyzer
+String is in the language.
+
 \end{lstlisting}
 
 \end{document}

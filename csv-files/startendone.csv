@@ -1,0 +1,7 @@
+1,0
+S
+Q
+S->1->S,S->0->Q,Q->0->Q,Q->1->S
+S
+100001
+#represents a language that starts and ends with 1s
